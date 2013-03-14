@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!--
+ * Copyright (C) 2013 NETWAYS GmbH, http://netways.de
+ * Markus Frosch <markus.frosch@netways.de>
+ *
+ * This software is licensed under the terms of the
+ *             GNU Open Source GPL 3.0
+ * license.
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/gpl.html>.
+-->
+
+<template match-pattern="icinga-(service-template|unhandled-service-problems)">
+
+    <option>
+        <parameter name="rowEvents">
+            <parameter>
+                <parameter name="title">Links</parameter>
+                <parameter name="menuid">service-links</parameter>
+                <parameter name="items">
+                    <parameter>
+
+                        <parameter name="target">sub</parameter>
+
+                        <parameter name="handler">
+                            <parameter name="click">Cronk.grid.handler.URL.openExternal</parameter>
+                        </parameter>
+
+                        <parameter name="handlerArguments">
+                            <parameter name="url"><![CDATA[{service_action_url}]]></parameter>
+                        </parameter>
+
+                        <parameter name="conditions">
+                            <parameter>
+                                <!-- Also possible: activation -->
+                                <parameter name="condition">show</parameter>
+                                <parameter name="fn"><![CDATA[
+                                    function() {
+                                        var url = this.getRecord().get("service_action_url");
+                                        if (url) {
+                                            // Updating the tooltip with the url
+                                            this.setTooltip(url);
+                                            return true;
+                                        } else {
+                                            return false;
+                                        }
+                                    }
+                                ]]></parameter>
+                            </parameter>
+                        </parameter>
+
+                        <parameter name="model"></parameter>
+
+                        <parameter name="xtype">grideventbutton</parameter>
+                        <parameter name="menuid">action_url</parameter>
+                        <parameter name="icon">modules/UrlExample/resources/images/action_url.png</parameter>
+                        <parameter name="tooltip">Action URL</parameter>
+                        <parameter name="text">Action</parameter>
+                    </parameter>
+
+                    <parameter>
+                        <parameter name="target">sub</parameter>
+
+                        <parameter name="handler">
+                            <parameter name="click">Cronk.grid.handler.URL.openExternal</parameter>
+                        </parameter>
+
+                        <parameter name="handlerArguments">
+                            <parameter name="url"><![CDATA[{service_notes_url}]]></parameter>
+                        </parameter>
+
+                        <parameter name="conditions">
+                            <parameter>
+                                <!-- Also possible: activation -->
+                                <parameter name="condition">show</parameter>
+                                <parameter name="fn"><![CDATA[
+                                    function() {
+                                        var url = this.getRecord().get("service_notes_url");
+                                        if (url) {
+                                            // Updating the tooltip with the url
+                                            this.setTooltip(url);
+                                            return true;
+                                        } else {
+                                            return false;
+                                        }
+                                    }
+                                ]]></parameter>
+                            </parameter>
+                        </parameter>
+
+                        <parameter name="model"></parameter>
+
+                        <parameter name="xtype">grideventbutton</parameter>
+                        <parameter name="menuid">notes_url</parameter>
+                        <parameter name="icon">modules/UrlExample/resources/images/notes_url.png</parameter>
+                        <parameter name="tooltip">Notes Url</parameter>
+                        <parameter name="text">Notes</parameter>
+                    </parameter>
+
+                </parameter>
+            </parameter>
+        </parameter>
+    </option>
+
+    <fields>
+
+        <field name="service_action_url">
+            <datasource>
+                <parameter name="field">SERVICE_ACTION_URL</parameter>
+            </datasource>
+            <display>
+                <parameter name="visible">false</parameter>
+                <parameter name="label">Service Action URL</parameter>
+                <parameter name="userFunc">
+                    <parameter name="model">UrlExample.ColumnDisplay.MacroExpand</parameter>
+                    <parameter name="method">replaceMacros</parameter>
+                </parameter>
+            </display>
+            <filter>
+                <parameter name="enabled">false</parameter>
+            </filter>
+            <order>
+                <parameter name="enabled">false</parameter>
+                <parameter name="default">false</parameter>
+            </order>
+        </field>
+
+        <field name="service_notes_url">
+            <datasource>
+                <parameter name="field">SERVICE_NOTES_URL</parameter>
+            </datasource>
+            <display>
+                <parameter name="visible">false</parameter>
+                <parameter name="label">Service Notes URL</parameter>
+                <parameter name="userFunc">
+                    <parameter name="model">UrlExample.ColumnDisplay.MacroExpand</parameter>
+                    <parameter name="method">replaceMacros</parameter>
+                </parameter>
+            </display>
+            <filter>
+                <parameter name="enabled">false</parameter>
+            </filter>
+            <order>
+                <parameter name="enabled">false</parameter>
+                <parameter name="default">false</parameter>
+            </order>
+        </field>
+
+    </fields>
+
+ </template>

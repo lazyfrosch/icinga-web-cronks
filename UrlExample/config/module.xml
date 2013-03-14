@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ae:configurations xmlns="http://agavi.org/agavi/config/parts/module/1.0"
+                   xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.0">
+    <ae:configuration>
+        <module enabled="true">
+            <settings>
+                <setting name="title">Service Links Example</setting>
+                <setting name="version">0.1</setting>
+                <setting name="authors">
+                    <ae:parameter name="markus@lazyfrosch.de">Markus Frosch</ae:parameter>
+                </setting>
+                <setting name="homepage" />
+                <setting name="update_url" />
+                <setting name="description" />
+                <setting name="agavi.include.javascript">
+                    <ae:parameter>%core.module_dir%/UrlExample/config/javascript.xml</ae:parameter>
+                </setting>
+                <setting name="agavi.include.templateExtensions">
+                    <ae:parameter name="folder">%core.module_dir%/UrlExample/config/templateExtensions/</ae:parameter>
+                    <ae:parameter name="pattern">.*\.xml$</ae:parameter>
+                </setting>
+            </settings>
+        </module>
+    </ae:configuration>
+</ae:configurations>
